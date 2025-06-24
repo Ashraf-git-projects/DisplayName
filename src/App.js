@@ -43,12 +43,10 @@ function App() {
         </label>
         <br />
 
-        <button type="submit" disabled={!isFormValid}>
+        <button type="submit">
           Submit
         </button>
       </form>
-
-      {/* Always render <p> so Cypress can find it */}
       <p>
         {submitted ? `Full Name: ${firstName} ${lastName}` : ""}
       </p>
