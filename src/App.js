@@ -1,12 +1,13 @@
 import './App.css';
 import { useState } from 'react';
+
 function App() {
-   const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault();
     setSubmitted(true);
   };
 
@@ -23,7 +24,7 @@ function App() {
             value={firstName}
             onChange={(e) => {
               setFirstName(e.target.value);
-              setSubmitted(false); // reset message if input changes
+              setSubmitted(false);
             }}
           />
         </label>
@@ -47,12 +48,10 @@ function App() {
         </button>
       </form>
 
-      {/* Show result only after submit */}
-      {submitted && (
-        <p>
-          Full Name : {firstName} {lastName}
-        </p>
-      )}
+      {/* Always render <p> so Cypress can find it */}
+      <p>
+        {submitted ? `Full Name: ${firstName} ${lastName}` : ""}
+      </p>
     </div>
   );
 }
