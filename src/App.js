@@ -6,12 +6,18 @@ function App() {
   const [lastName, setLastName] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const isFormValid = firstName.trim() !== "" && lastName.trim() !== "";
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!isFormValid) {
+      setSubmitted(false); // Do not show <p> tag
+      return;
+    }
+
     setSubmitted(true);
   };
-
-  const isFormValid = firstName.trim() !== "" && lastName.trim() !== "";
 
   return (
     <div>
@@ -43,13 +49,13 @@ function App() {
         </label>
         <br />
 
-        <button type="submit">
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
-      <p>
-        {submitted ? `Full Name: ${firstName} ${lastName}` : ""}
-      </p>
+
+      {/* ✅ This will only show when both fields are valid */}
+      {submitted && (
+        <p>Full Name: {firstName} {lastName}</p>
+      )}
     </div>
   );
 }
